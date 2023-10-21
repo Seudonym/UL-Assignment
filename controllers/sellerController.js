@@ -35,8 +35,8 @@ export const createCatalog = catchAsync(async (req, res) => {
   return res.json({ message: "Catalog updated!" });
 });
 
-export const orders = async (req, res) => {
+export const orders = catchAsync(async (req, res) => {
   const userID = req.userID;
-  const orders = await Order.find({ seller: userID });
+  const orders = await Order.find({ seller: userID }).select("-__v");
   return res.json(orders);
-};
+});

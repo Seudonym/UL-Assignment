@@ -76,7 +76,7 @@ export const registerController = catchAsync(async (req, res) => {
   return res.status(201).json({ token });
 });
 
-export const loginController = async (req, res) => {
+export const loginController = catchAsync(async (req, res) => {
   const username = req.body.username.trim();
   const password = req.body.password.trim();
 
@@ -92,4 +92,4 @@ export const loginController = async (req, res) => {
 
   const token = jwt.sign({ id: user._id }, envHandler("JWT_SECRET"));
   return res.status(200).json({ token });
-};
+});

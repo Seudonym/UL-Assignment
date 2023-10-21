@@ -12,12 +12,12 @@ import Order from "../models/Order.js";
 
 import catchAsync from "../helpers/catchAsync.js";
 
-export const listOfSellers = async (req, res) => {
+export const listOfSellers = catchAsync(async (req, res) => {
   const sellers = await User.find({ role: "seller" }).select(
     "-password -__v -role",
   );
-  return res.json(sellers);
-};
+  return res.status(200).json(sellers);
+});
 
 export const sellerCatalog = catchAsync(async (req, res) => {
   if (!validator.isMongoId(req.params.seller_id)) {
@@ -32,7 +32,7 @@ export const sellerCatalog = catchAsync(async (req, res) => {
   const catalog = await Catalog.find({ seller: req.params.seller_id }).select(
     "-seller -__v",
   );
-  return res.json(catalog);
+  return res.status(200).json(catalog);
 });
 
 export const createOrder = catchAsync(async (req, res) => {

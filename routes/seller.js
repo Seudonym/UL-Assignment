@@ -5,7 +5,7 @@ import { protect } from "../middleware/protect.js";
 
 const router = express.Router();
 
-router.post("/create-catalog", protect, createCatalog); 
+router.post("/create-catalog", protect, createCatalog);
 router.get("/orders", protect, orders);
 
 export default router;

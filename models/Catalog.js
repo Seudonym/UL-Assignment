@@ -3,9 +3,7 @@ import mongoose from "mongoose";
 const catalogSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   products: {
-    type: [
-      {type: mongoose.Schema.Types.ObjectId, ref: "Product"}
-    ]
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
   },
   seller: {
     type: mongoose.Schema.Types.ObjectId,

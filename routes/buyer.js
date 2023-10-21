@@ -1,6 +1,10 @@
 import express from "express";
 
-import { listOfSellers, sellerCatalog, createOrder } from "../controllers/buyerController.js";
+import {
+  listOfSellers,
+  sellerCatalog,
+  createOrder,
+} from "../controllers/buyerController.js";
 import { protect } from "../middleware/protect.js";
 
 const router = express.Router();
