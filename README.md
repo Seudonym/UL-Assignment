@@ -2,18 +2,6 @@
 
 This project is an e-commerce marketplace API built with Node.js, Express.js, and MongoDB using Mongoose. It provides functionality for users, sellers, catalogs, products, and orders. Buyers and sellers can register, manage catalogs, create orders, and more.
 
-## Table of Contents
-
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Project Structure](#project-structure)
-- [Configuration](#configuration)
-- [API Endpoints](#api-endpoints)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Getting Started
 
 ### Prerequisites
