@@ -26,7 +26,9 @@ export const protect = catchAsync(async (req, res, next) => {
       .json({ error: "Session expired. Login again", verified: false });
 
   const decoded = await jwtVerifyPromise(token, envHandler("JWT_SECRET")).catch(
-    (err) => res.status(400).json({ error: err.message, verified: false }),
+    (err) => {
+      return res.status(400).json({ error: err.message, verified: false });
+    },
   );
 
   req.userID = decoded.id;

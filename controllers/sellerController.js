@@ -32,11 +32,11 @@ export const createCatalog = catchAsync(async (req, res) => {
   catalog.products = productIDs;
   await catalog.save();
 
-  res.json({ message: "Catalog updated!" });
+  return res.json({ message: "Catalog updated!" });
 });
 
 export const orders = async (req, res) => {
   const userID = req.userID;
   const orders = await Order.find({ seller: userID });
-  res.json(orders);
+  return res.json(orders);
 };
