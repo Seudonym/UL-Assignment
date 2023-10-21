@@ -9,9 +9,9 @@ import jwt from "jsonwebtoken";
 import envHandler from "../helpers/envHandler.js";
 import catchAsync from "../helpers/catchAsync.js";
 import User from "../models/User.js";
+import Catalog from "../models/Catalog.js";
 
 export const registerController = catchAsync(async (req, res) => {
-  console.log(req.body);
   const username = req.body.username.trim();
   const password = req.body.password.trim();
   const role = req.body.role.trim();
@@ -57,6 +57,16 @@ export const registerController = catchAsync(async (req, res) => {
     role,
   });
   await newUser.save();
+
+  if (role === "seller") {
+    const newCatalog = new Catalog({
+      _id: new mongoose.Types.ObjectId(),
+      seller: newUser._id,
+      products: [],
+    });
+    await newCatalog.save();
+    console.log("saved");
+  }
 
   // Create token
   const token = jwt.sign({ id: newUser._id }, envHandler("JWT_SECRET"), {

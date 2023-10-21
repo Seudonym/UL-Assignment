@@ -3,12 +3,7 @@ import mongoose from "mongoose";
 const orderSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   products: {
-    type: [
-      {
-        product: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-      },
-    ],
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
   },
   buyer: {
     type: mongoose.Schema.Types.ObjectId,
@@ -20,6 +15,6 @@ const orderSchema = new mongoose.Schema({
   },
 });
 
-const Order = mongoose.model("Catalog", catalogSchema);
+const Order = mongoose.model("Order", orderSchema);
 
 export default Order;

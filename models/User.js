@@ -9,16 +9,6 @@ const userSchema = new mongoose.Schema({
     enum: ["seller", "buyer"],
     required: true,
   },
-
-  catalog: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Catalog",
-  },
-
-  order: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Order",
-  },
 });
 
 const User = mongoose.model("User", userSchema);
