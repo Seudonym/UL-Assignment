@@ -65,7 +65,6 @@ export const registerController = catchAsync(async (req, res) => {
       products: [],
     });
     await newCatalog.save();
-    console.log("saved");
   }
 
   // Create token
