@@ -37,6 +37,6 @@ export const createCatalog = catchAsync(async (req, res) => {
 
 export const orders = catchAsync(async (req, res) => {
   const userID = req.userID;
-  const orders = await Order.find({ seller: userID }).select("-__v");
+  const orders = await Order.find({ seller: userID }).select("-__v").populate("products", "-__v");
   return res.json(orders);
 });

@@ -31,7 +31,7 @@ export const sellerCatalog = catchAsync(async (req, res) => {
 
   const catalog = await Catalog.find({ seller: req.params.seller_id }).select(
     "-seller -__v",
-  );
+  ).populate("products", "-__v");
   return res.status(200).json(catalog);
 });
 
