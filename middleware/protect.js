@@ -2,15 +2,6 @@ import jwt from "jsonwebtoken";
 import envHandler from "../helpers/envHandler.js";
 import catchAsync from "../helpers/catchAsync.js";
 
-const jwtVerifyPromise = (token, secret) => {
-  return new Promise((resolve, reject) => {
-    jwt.verify(token, secret, {}, (err, payload) => {
-      if (err) reject(err);
-      else resolve(payload);
-    });
-  });
-};
-
 export const protect = catchAsync(async (req, res, next) => {
   let token;
 
@@ -25,12 +16,13 @@ export const protect = catchAsync(async (req, res, next) => {
       .status(400)
       .json({ error: "Session expired. Login again", verified: false });
 
-  const decoded = await jwtVerifyPromise(token, envHandler("JWT_SECRET")).catch(
-    (err) => {
-      return res.status(400).json({ error: err.message, verified: false });
-    },
-  );
-
+  // const decoded = await jwtVerifyPromise(token, envHandler("JWT_SECRET")).catch(
+  let decoded;
+  try {
+    decoded = await jwt.verify(token, envHandler("JWT_SECRET"));
+  } catch (err) {
+    return res.status(400).json({ error: "Session expired. Login again" });
+  }
   req.userID = decoded.id;
 
   next();
