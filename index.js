@@ -6,6 +6,8 @@ import authRoutes from "./routes/auth.js";
 import buyerRoutes from "./routes/buyer.js";
 import sellerRoutes from "./routes/seller.js";
 
+import connectToDB from "./initializers/DB.js";
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -15,6 +17,8 @@ app.use(
     origin: "*",
   }),
 );
+
+connectToDB();
 
 app.use("/api/auth", authRoutes);
 app.use("/api/buyer", buyerRoutes);
